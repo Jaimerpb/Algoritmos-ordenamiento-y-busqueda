@@ -13,7 +13,8 @@ test_data_even = (4, 6, 2, 0, 8, 10, 3, -2)
 @dataclass
 class Node:
     data: int
-    next_node: Node | None
+    next_node = Node | None
+
 
 
 class SortedLinkedList:

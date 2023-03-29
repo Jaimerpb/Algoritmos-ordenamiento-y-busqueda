@@ -186,3 +186,10 @@ class Polynomial:
         False
         """
         return not self.__eq__(polynomial_2)
+
+#(Mine)Test all the functions in the class using doctest
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+    
+    

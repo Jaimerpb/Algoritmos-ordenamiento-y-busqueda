@@ -32,13 +32,13 @@ class Stack(Generic[T]):
     def __str__(self) -> str:
         return str(self.stack)
 
-    def push(self, data: T) -> None:
+    def apilar(self, data: T) -> None:
         """Push an element to the top of the stack."""
         if len(self.stack) >= self.limit:
             raise StackOverflowError
         self.stack.append(data)
 
-    def pop(self) -> T:
+    def desapilar(self) -> T:
         """
         Pop an element off of the top of the stack.
 
@@ -51,7 +51,7 @@ class Stack(Generic[T]):
             raise StackUnderflowError
         return self.stack.pop()
 
-    def peek(self) -> T:
+    def cima(self) -> T:
         """
         Peek at the top-most element of the stack.
 
@@ -64,14 +64,14 @@ class Stack(Generic[T]):
             raise StackUnderflowError
         return self.stack[-1]
 
-    def is_empty(self) -> bool:
+    def esta_vacia(self) -> bool:
         """Check if a stack is empty."""
         return not bool(self.stack)
 
-    def is_full(self) -> bool:
-        return self.size() == self.limit
+    def esta_llena(self) -> bool:
+        return self.tamanio() == self.limit
 
-    def size(self) -> int:
+    def tamanio(self) -> int:
         """Return the size of the stack."""
         return len(self.stack)
 
@@ -86,44 +86,44 @@ def test_stack() -> None:
     """
     stack: Stack[int] = Stack(10)
     assert bool(stack) is False
-    assert stack.is_empty() is True
-    assert stack.is_full() is False
+    assert stack.esta_vacia() is True
+    assert stack.esta_llena() is False
     assert str(stack) == "[]"
 
     try:
-        _ = stack.pop()
+        _ = stack.desapilar()
         raise AssertionError()  # This should not happen
     except StackUnderflowError:
         assert True  # This should happen
 
     try:
-        _ = stack.peek()
+        _ = stack.cima()
         raise AssertionError()  # This should not happen
     except StackUnderflowError:
         assert True  # This should happen
 
     for i in range(10):
-        assert stack.size() == i
-        stack.push(i)
+        assert stack.tamanio() == i
+        stack.apilar(i)
 
     assert bool(stack)
-    assert not stack.is_empty()
-    assert stack.is_full()
+    assert not stack.esta_vacia()
+    assert stack.esta_llena()
     assert str(stack) == str(list(range(10)))
-    assert stack.pop() == 9
-    assert stack.peek() == 8
+    assert stack.desapilar() == 9
+    assert stack.cima() == 8
 
-    stack.push(100)
+    stack.apilar(100)
     assert str(stack) == str([0, 1, 2, 3, 4, 5, 6, 7, 8, 100])
 
     try:
-        stack.push(200)
+        stack.apilar(200)
         raise AssertionError()  # This should not happen
     except StackOverflowError:
         assert True  # This should happen
 
-    assert not stack.is_empty()
-    assert stack.size() == 10
+    assert not stack.esta_vacia()
+    assert stack.tamanio() == 10
 
     assert 5 in stack
     assert 55 not in stack

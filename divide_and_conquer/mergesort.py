@@ -3,7 +3,6 @@ from __future__ import annotations
 
 def merge(left_half: list, right_half: list) -> list:
     """Helper function for mergesort.
-
     >>> left_half = [-2]
     >>> right_half = [-1]
     >>> merge(left_half, right_half)

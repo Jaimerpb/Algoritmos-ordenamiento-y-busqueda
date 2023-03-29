@@ -33,7 +33,7 @@ def is_prime(number: int) -> bool:
 
     # precondition
     assert isinstance(number, int) and (
-        number >= 0
+        number >0
     ), "'number' must been an int and positive"
 
     if 1 < number < 4:
