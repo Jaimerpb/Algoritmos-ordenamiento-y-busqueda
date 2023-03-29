@@ -35,7 +35,7 @@ def sentinel_linear_search(sequence, target):
 
     index = 0
     while sequence[index] != target:
-        index += 1
+       index += 1
 
     sequence.pop()
 
